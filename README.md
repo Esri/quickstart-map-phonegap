@@ -1,6 +1,6 @@
 # quickstart-map-phonegap
 
-A set of simple JavaScript samples that show how to get started with PhoneGap/Cordova and the ArcGIS API for JavaScript. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
+A set of simple samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
 
 PhoneGap is based on the [Apache Cordova](http://cordova.apache.org/) open source project. You can download PhoneGap or Cordova and both will work. Adobe has a few additions to PhoneGap that don't exist in Cordova such as [PhoneGap Build](https://build.phonegap.com/apps) which is an online build system. 
 
@@ -15,7 +15,7 @@ This repo contains four sample applications.
 
 ## Instructions
 
-**NOTE:** The current PhoneGap.com online documentation is confusing and alot of outdated information and terminology, so I recommend just using Cordova and the Cordova documentation. The Cordova documentation appears to be up to date and easy to follow. 
+**NOTE:** The current PhoneGap.com online documentation is confusing and there is alot of outdated information and terminology, so I recommend just using Cordova and the Cordova documentation. The Cordova documentation appears to be up to date and easy to follow. 
 
 **Don't have node.js?** If you don't have node.js you can't run the command-line build tools. But, hey, no problem. Just use this [quickstart-phonegap-template](https://github.com/andygup/quickstart-phonegap-template) repo.
 
@@ -42,7 +42,7 @@ These applications will not work as stand-alone web applications because there a
 
 **Option 1** - Build and run application directly on a device. Use console.log statements for troubleshooting.
 
-**Option 2 **- Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test locally on your machine.
+**Option 2 ** - Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test locally on your machine.
 
 Here's a good article to check out by [Andy Trice](http://www.tricedesigns.com/2013/01/18/my-workflow-for-developing-phonegap-applications/) on using Ripple. This article also provides suggestions on how to set up Chrome for testing on http://localhost. I'm working on a blog article to explain this in more detail.
 
