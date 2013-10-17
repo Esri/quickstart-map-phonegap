@@ -34,7 +34,8 @@ If you do plan to use the command line tools then follow these steps:
 
 6. Copy the sample apps directory from this repo into any newly created /www directories
 7. Set which sample you want the application to launch in the config.xml <content> tag.
-8. Build the app and launch!
+8. To take advantage of GPS and Geolocation capabilities follow these [instructions](http://cordova.apache.org/docs/en/3.1.0/cordova_geolocation_geolocation.md.html#Geolocation).
+9. Build the app and launch!
 
 ## Testing
 
