@@ -30,8 +30,8 @@
     </div>
 </div>
 <!-- Load the library references for ArcGIS API for JavaScript -->
-<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">
-<script type="text/javascript" src="http://js.arcgis.com/3.7compact"></script>
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+<script type="text/javascript" src="http://js.arcgis.com/3.8compact"></script>
 <script type="text/javascript" src="cordova.js"></script>
 
 <script>
@@ -68,15 +68,14 @@
             function(Map,utils,Legend,Scalebar,BorderContainer,ContentPane) {
                 // Create map
 
-                var map = null;
+                var map = null, helper;
                 utils.arcgisUrl = utils.arcgisUrl.replace("file:", "http:");
                 utils.createMap("4778fee6371d4e83a22786029f30c7e1", "mapDiv")
                     .then(function(response) {
-                        console.log("hah");
                         dojo.byId("title").innerHTML = response.itemInfo.item.title;
                         dojo.byId("subtitle").innerHTML = response.itemInfo.item.snippet;
 
-                        map = response.map;
+                        map = response.map;                    
 
                         //add the scalebar 
                         var scalebar = new Scalebar({
