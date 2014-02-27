@@ -11,7 +11,9 @@ This repo contains four sample applications.
 * index_basicmap.html - a basic mapping application configuration.
 * index_basicwebmap.html - uses a simple web map.
 * index_basicgps.html - uses the GPS to acquire current location and center the map.
-* index_jquerymobilegps.html - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS API for JavaScript.
+* index_jquerymobilegps.html - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS API for JavaScript. 
+
+The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library.
 
 ## Instructions
 
@@ -34,6 +36,9 @@ If you do plan to use the command line tools then follow these steps:
 
 6. Copy the sample apps directory from this repo into any newly created /www directories
 7. Set which sample you want the application to launch in the config.xml <content> tag.
+
+    	<content src="index_jquerymobilegps.html" />
+
 8. To take advantage of GPS and Geolocation capabilities follow these [instructions](http://cordova.apache.org/docs/en/3.1.0/cordova_geolocation_geolocation.md.html#Geolocation).
 9. Build the app and launch!
 
@@ -43,7 +48,7 @@ These applications will not work as stand-alone web applications because there a
 
 **Option 1** - Build and run application directly on a device. Use console.log statements for troubleshooting.
 
-**Option 2 ** - Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test locally on your machine.
+**Option 2** - Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test locally on your machine.
 
 Here's a good article to check out by [Andy Trice](http://www.tricedesigns.com/2013/01/18/my-workflow-for-developing-phonegap-applications/) on using Ripple. This article also provides suggestions on how to set up Chrome for testing on http://localhost. I'm working on a blog article to explain this in more detail.
 
@@ -57,7 +62,8 @@ Here's a good article to check out by [Andy Trice](http://www.tricedesigns.com/2
 
 ## Resources
 
-* [ArcGIS for JavaScript API Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
+* [ArcGIS for JavaScript API Resource Cen* ter](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
+* [jQueryHelper Library](https://github.com/Esri/jquery-mobile-map-js)
 * [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
 * [twitter@esri](http://twitter.com/esri)
 
@@ -70,7 +76,7 @@ Find a bug or want to request a new feature?  Please let us know by submitting a
 Anyone and everyone is welcome to contribute. 
 
 ## Licensing
-Copyright 2013 Esri
+Copyright 2014 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

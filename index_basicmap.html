@@ -20,9 +20,10 @@
 </head>
 <body>
     <div id="mapDiv"></div>
+    
     <!-- Load the library and CSS references for ArcGIS API for JavaScript -->
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">    
-    <script src="http://js.arcgis.com/3.7compact"></script>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">    
+    <script src="http://js.arcgis.com/3.8compact"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         var app = {
@@ -46,13 +47,13 @@
             },
             // Update DOM on a Received Event
             receivedEvent: function(id) {
-                console.log('Received Event: ' + id);
+                console.log('Cordova device ready event: ' + id);
                 
                 require(["esri/map"],
                         function(Map) {
                             // Create map
                             var map = new Map("mapDiv",{
-                                basemap: "topo",
+                                basemap: "satellite",
                                 center: [-122.69, 45.52],
                                 zoom: 3
                             });

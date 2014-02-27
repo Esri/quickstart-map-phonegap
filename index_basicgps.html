@@ -22,8 +22,8 @@
     <div id="mapDiv"></div>
     
     <!-- Load the library and CSS references for ArcGIS API for JavaScript -->
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">
-    <script type="text/javascript" src="http://js.arcgis.com/3.7compact"></script>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+    <script type="text/javascript" src="http://js.arcgis.com/3.8compact"></script>   
     <script type="text/javascript" src="cordova.js"></script>
     <script>
         var app = {
@@ -52,18 +52,22 @@
             }
         }; 
         
-        var mapInit = function(){ 
-            require(["esri/map","esri/symbols/PictureMarkerSymbol","esri/Graphic","esri/geometry/Point"],
-                function(Map,PictureMarkerSymbol,Graphic,Point) {
+        var mapInit = function(){
+            console.log("Loading ArcGIS...");
+            require(["esri/map","esri/symbols/PictureMarkerSymbol","esri/graphic",
+                "esri/SpatialReference",
+                "esri/geometry/Point",
+                "dojo/on","dojo/domReady!"],
+                function(Map,PictureMarkerSymbol,Graphic,SpatialReference,Point,on) {
                     // Create map
                     var map = new Map("mapDiv",{
-                        basemap: "topo",
+                        basemap: "streets",
                         center: [-98.6, 39.8],
-                        zoom: 2
+                        zoom: 3
                     });
                     
                     // Wait until map has loaded before starting geolocation
-                    map.on("load",startGeolocation);
+                    map.on("load",startGeolocation);                                        
 
                     // Create the marker symbol
                     var markerSymbol = new PictureMarkerSymbol({
@@ -76,25 +80,27 @@
                         "height":35
                     })
 
-                    function startGeolocation(){
+                    function startGeolocation(){                                                         
+                        console.log("Starting geolocation...");
                         navigator.geolocation.getCurrentPosition(locationSuccess,locationError,{setHighAccuracy:true});
                     }
 
                     // Handle location success
                     function locationSuccess(position){
                         if(position.coords.latitude != null || position.coords.longitude != null){
-                            var wgsPt = new esri.geometry.Point(position.coords.longitude,position.coords.latitude);
-                            map.graphics.add(new esri.Graphic(wgsPt, markerSymbol));
-                            map.centerAndZoom(wgsPt, 14);
+                            console.log("long: " + position.coords.longitude + ", lat: " + position.coords.latitude);
+                            var wgsPt = new Point(position.coords.longitude,position.coords.latitude, new SpatialReference({wkid:4326})); 
+                            map.graphics.add(new Graphic(wgsPt, markerSymbol));
+                            map.centerAndZoom(wgsPt, 12);
                         }
                     }
 
                     function locationError(err){
-                        console.log("locationError: " + err.message);
+                        console.log("locationError: " + err.toString());
                     }
 
                 }
-            );         
+            );       
         }
         
         app.initialize();        
