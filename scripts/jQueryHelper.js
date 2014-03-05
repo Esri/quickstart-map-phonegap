@@ -8,9 +8,9 @@
 var jQueryHelper = function(/* Map */ map){
     this.map = map;
     this.mapId = map.id;
+    this.mapDiv = document.getElementById(map.id);
     this.basemap = map._basemap;
     this.currentPageID = null;
-    this.orientation = null;
     this.slider = this.map._slider;
 
     /**
@@ -22,12 +22,6 @@ var jQueryHelper = function(/* Map */ map){
      * @type {boolean}
      */
     this.autoCenter = true;
-
-    /**
-     * Detects if phone was rotated while app view is on a child screen.
-     * @type {boolean}
-     */
-    this.rotatedFlag = false;
 
     /**
      * Map debounce delay in milliseconds
@@ -163,13 +157,9 @@ var jQueryHelper = function(/* Map */ map){
         var supportsOrientationChange = "onorientationchange" in window,
             orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 
-        window.addEventListener(orientationEvent, this.debounceMap(function(){ console.log("rotating");
+        window.addEventListener(orientationEvent, this.debounceMap(function(){
             if(this._getActivePage() == this.currentPageID){
                 this.recenterOnRotate(400);
-                this.rotatedFlag = false;
-            }
-            else{
-                this.rotatedFlag = true;
             }
         },this.DEBOUNCE_DELAY).bind(this), false);
     }
@@ -222,61 +212,101 @@ var jQueryHelper = function(/* Map */ map){
      * @param pageId
      */
     this.setPageChangeListeners = function(pageId){
-        $('#' + pageId).on("pagebeforehide",function(){
-            this.orientation = this.getOrientation();
-            console.log("orientation before hide = " + this.orientation)
-        }.bind(this));
-
         $('#' + pageId).on("pageshow",function(){
             console.log("home pageshow event");
             var currentOrientation = this.getOrientation();
-            this._destroyAndRecreateMap(currentOrientation);
+            this._reinflatMap(currentOrientation);
         }.bind(this))
     }
 
     this.recenterOnRotate = function(/* int */ timerDelay){
-        var timeout = null;
-        timerDelay != "undefined" ? timeout = timerDelay : timeout = 500;
-        setTimeout((function(){
-            console.log("rotate timer complete");
 
-            var locationStr = this.getCenterPt().split(",");
-            this._centerMap(locationStr[0],locationStr[1],locationStr[2])
-
-        }).bind(this),timeout);
-    }
-
-    this.resetMap = function(height,width,zoom,callback){
-        if(this.getOrientation() == this.localEnum().PORTRAIT){
-            this.map.width = width;
-            this.map.height = height;
+        if(this.map.height == 0 || this.map.width == 0){
+            var currentOrientation = this.getOrientation();
+            this._reinflatMap(currentOrientation);
         }
         else{
+            var timeout = null;
+            timerDelay != "undefined" ? timeout = timerDelay : timeout = 500;
+            setTimeout((function(){
+                console.log("rotate timer complete");
+
+                var locationStr = this.getCenterPt().split(",");
+                this._centerMap(locationStr[0],locationStr[1],locationStr[2])
+
+            }).bind(this),timeout);
+        }
+    }
+
+    this._getMapDivVisibility = function(){
+        var id = this.map.id;
+        return $("#" + id).is(":visible");
+    }
+
+    this.resetMap = function(height,width,zoom){
+        if(this.getOrientation() == this.localEnum().PORTRAIT){
+            //adjust map height/width
+            this.map.height = height;
+            this.map.width = width;
+
+            //adjust map div height/width
+            this.mapDiv.style.height = height;
+            this.mapDiv.style.width = width;
+
+        }
+        else{
+            //adjust map height/width
             this.map.width = height;
             this.map.height = width;
+
+            //adjust map div height/width
+            this.mapDiv.style.width = height;
+            this.mapDiv.style.height = width;
         }
-
-        return callback();
     }
 
-    this.destroyMap = function(){
-        this.map.destroy();
-    }
-
-    this._destroyAndRecreateMap = function(currentOrientation){
-
-        if(currentOrientation != this.orientation || this.rotatedFlag == true){
-            this.destroyMap();
-            this._createNewMap();
-            this.rotatedFlag = false;
+    /**
+     * Reinflate map based on specific conditions
+     * @param currentOrientation
+     * @private
+     */
+    this._reinflatMap = function(currentOrientation){
+        if(this.map.height == 0 || this.map.width ==0){
+            this.debounceMap(function(){
+                this.resetMap(this.getHeight(),this.getWidth(),this.getZoom());
+                this.map.resize();
+                this.map.reposition();
+                setTimeout(function(){
+                    this.map.setZoom(this.getZoom());
+                    var locationStr = this.getCenterPt().split(",");
+                    this._centerMap(locationStr[0],locationStr[1],locationStr[2])
+                    $.event.trigger({
+                        type: "helper-map-loaded",
+                        message: "jQueryHelper map loaded",
+                        time: new Date()
+                    })
+                }.bind(this),350) //resize and reposition need to settle before this fires!
+            }.bind(this),this.DEBOUNCE_DELAY)()
         }
         else{
-            console.log("orientation is equal: " + this.orientation + ", " + currentOrientation)
             this.map.resize();
             this.map.reposition();
         }
     }
 
+
+    /**
+     * Deprecated Mar 4, 2014
+     */
+    this.destroyMap = function(){
+        this.map.destroy();
+    }
+
+    /**
+     * Deprecated Mar 4, 2014
+     * @param autoCenter
+     * @private
+     */
     this._createNewMap = function(/* boolean */ autoCenter){
         var locationStr = this.getCenterPt().split(",");
         if(locationStr instanceof Array){
@@ -323,7 +353,7 @@ var jQueryHelper = function(/* Map */ map){
         return $.mobile.activePage[0].id;
     }
 
-    this._init = function(){          
+    this._init = function(){
         this.currentPageID = this._getActivePage();
 
         this.setOrientationListener();
@@ -339,5 +369,6 @@ var jQueryHelper = function(/* Map */ map){
         var center = this.map.extent.getCenter();
         this.setCenterPt(center.x,center.y,this.map.spatialReference.wkid);
         this.setZoom(this.map.getZoom());
+
     }.bind(this)()
 }
