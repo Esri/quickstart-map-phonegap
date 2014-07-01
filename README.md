@@ -2,7 +2,7 @@
 
 A set of simple samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
 
-PhoneGap is based on the [Apache Cordova](http://cordova.apache.org/) open source project. You can download PhoneGap or Cordova and both will work. Adobe has a few additions to PhoneGap that don't exist in Cordova such as [PhoneGap Build](https://build.phonegap.com/apps) which is an online build system. 
+You can download PhoneGap or Cordova and both will work. Adobe has a few additions to PhoneGap that don't exist in Cordova such as [PhoneGap Build](https://build.phonegap.com/apps) which is an online build system. 
 
 ## Features
 This repo contains four sample applications. 
@@ -14,6 +14,16 @@ This repo contains four sample applications.
 * index_jquerymobilegps.html - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS API for JavaScript. 
 
 The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library.
+
+## Why use PhoneGap?
+
+Because you gain capabilities to access at least the following with your web app:
+* SDCard
+* Camera
+* Accelerometer
+* Contacts
+* Battery Status
+* Ability to put your app in Google Play, App Store or Windows Phone Store
 
 ## Instructions
 
@@ -46,9 +56,9 @@ If you do plan to use the command line tools then follow these steps:
 
 These applications will not work as stand-alone web applications because there are coded specifically for PhoneGap/Cordova. So you have several other options:
 
-**Option 1** - Build and run application directly on a device. Use console.log statements for troubleshooting.
+**Option 1** - Build and run application directly on a device. Use console.log statements for troubleshooting. With the latest versions of Chrome and Safari you can remotely debug the device as long as it's attached to your laptop via a USB cabable. This is super-convienent and very easy to set up.
 
-**Option 2** - Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test locally on your machine.
+**Option 2** - Use the [Ripple Emulator Chrome Plugin](https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en) to test the HTML, CSS and JavaScript locally on your machine. Ripple emulates the PhoneGap environment.
 
 Here's a good article to check out by [Andy Trice](http://www.tricedesigns.com/2013/01/18/my-workflow-for-developing-phonegap-applications/) on using Ripple. This article also provides suggestions on how to set up Chrome for testing on http://localhost. I'm working on a blog article to explain this in more detail.
 
