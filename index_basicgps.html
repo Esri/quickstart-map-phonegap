@@ -19,55 +19,55 @@
     </style>
 </head>
 <body>
-    <div id="mapDiv"></div>
-    
-    <!-- Load the library and CSS references for ArcGIS API for JavaScript -->
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
-    <script type="text/javascript" src="http://js.arcgis.com/3.8compact"></script>   
-    <script type="text/javascript" src="cordova.js"></script>
-    <script>
-        var app = {
-            // Application Constructor
-            initialize: function() {
-                this.bindEvents();
-            },
-            // Bind Event Listeners
-            //
-            // Bind any events that are required on startup. Common events are:
-            // 'load', 'deviceready', 'offline', and 'online'.
-            bindEvents: function() {
-                document.addEventListener('deviceready', this.onDeviceReady, false);
-            },
-            // deviceready Event Handler
-            //
-            // The scope of 'this' is the event. In order to call the 'receivedEvent'
-            // function, we must explicity call 'app.receivedEvent(...);'
-            onDeviceReady: function() {
-                app.receivedEvent('deviceready');
-            },
-            // Update DOM on a Received Event
-            receivedEvent: function(id) {  
-                console.log('Received Event: ' + id);
-                mapInit();
-            }
-        }; 
-        
-        var mapInit = function(){
-            console.log("Loading ArcGIS...");
-            require(["esri/map","esri/symbols/PictureMarkerSymbol","esri/graphic",
-                "esri/SpatialReference",
-                "esri/geometry/Point",
-                "dojo/on","dojo/domReady!"],
+<div id="mapDiv"></div>
+
+<!-- Load the library and CSS references for ArcGIS API for JavaScript -->
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+<script type="text/javascript" src="http://js.arcgis.com/3.13compact"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+    var app = {
+        // Application Constructor
+        initialize: function() {
+            this.bindEvents();
+        },
+        // Bind Event Listeners
+        //
+        // Bind any events that are required on startup. Common events are:
+        // 'load', 'deviceready', 'offline', and 'online'.
+        bindEvents: function() {
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+        },
+        // deviceready Event Handler
+        //
+        // The scope of 'this' is the event. In order to call the 'receivedEvent'
+        // function, we must explicity call 'app.receivedEvent(...);'
+        onDeviceReady: function() {
+            app.receivedEvent('deviceready');
+        },
+        // Update DOM on a Received Event
+        receivedEvent: function(id) {
+            console.log('Received Event: ' + id);
+            mapInit();
+        }
+    };
+
+    var mapInit = function(){
+        console.log("Loading ArcGIS...");
+        require(["esri/map","esri/symbols/PictureMarkerSymbol","esri/graphic",
+                    "esri/SpatialReference",
+                    "esri/geometry/Point",
+                    "dojo/on","dojo/domReady!"],
                 function(Map,PictureMarkerSymbol,Graphic,SpatialReference,Point,on) {
                     // Create map
                     var map = new Map("mapDiv",{
-                        basemap: "streets",
-                        center: [-98.6, 39.8],
+                        basemap: "topo",
+                        center: [-98.58, 39.82],
                         zoom: 3
                     });
-                    
+
                     // Wait until map has loaded before starting geolocation
-                    map.on("load",startGeolocation);                                        
+                    map.on("load",startGeolocation);
 
                     // Create the marker symbol
                     var markerSymbol = new PictureMarkerSymbol({
@@ -80,7 +80,7 @@
                         "height":35
                     })
 
-                    function startGeolocation(){                                                         
+                    function startGeolocation(){
                         console.log("Starting geolocation...");
                         navigator.geolocation.getCurrentPosition(locationSuccess,locationError,{setHighAccuracy:true});
                     }
@@ -89,7 +89,7 @@
                     function locationSuccess(position){
                         if(position.coords.latitude != null || position.coords.longitude != null){
                             console.log("long: " + position.coords.longitude + ", lat: " + position.coords.latitude);
-                            var wgsPt = new Point(position.coords.longitude,position.coords.latitude, new SpatialReference({wkid:4326})); 
+                            var wgsPt = new Point(position.coords.longitude,position.coords.latitude, new SpatialReference({wkid:4326}));
                             map.graphics.add(new Graphic(wgsPt, markerSymbol));
                             map.centerAndZoom(wgsPt, 12);
                         }
@@ -100,10 +100,10 @@
                     }
 
                 }
-            );       
-        }
-        
-        app.initialize();        
-    </script>       
+        );
+    }
+
+    app.initialize();
+</script>
 </body>
 </html>
