@@ -85,7 +85,7 @@
 
                                 //add the legend. Note that we use the utility method getLegendLayers to get
                                 //the layers to display in the legend from the createMap response.
-                                var legendLayers = arcgisUtils.getLegendLayers(response);
+                                var legendLayers = utils.getLegendLayers(response);
                                 var legendDijit = new Legend({
                                     map: map,
                                     layerInfos: legendLayers
