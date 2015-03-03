@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>Basic Map</title>
+    <style  type="text/css">
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #mapDiv {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapDiv"></div>
+    
+    <!-- Load the library and CSS references for ArcGIS API for JavaScript -->
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">    
+    <script src="http://js.arcgis.com/3.8compact"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicity call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                app.receivedEvent('deviceready');
+            },
+            // Update DOM on a Received Event
+            receivedEvent: function(id) {
+                console.log('Cordova device ready event: ' + id);
+                
+                require(["esri/map"],
+                        function(Map) {
+                            // Create map
+                            var map = new Map("mapDiv",{
+                                basemap: "satellite",
+                                center: [-122.69, 45.52],
+                                zoom: 3
+                            });
+                        }
+                ); 
+            }
+        };    
+        
+        app.initialize();                
+        
+    </script>    
+</body>
+</html>
