@@ -340,16 +340,21 @@ var jQueryHelper = function(/* Map */ map){
 
     this._centerMap = function(/* number */ x, /* number */ y, /* int */ wkid){
         if(!isNaN(x) && !isNaN(y) && !isNaN(wkid)){
-            var wgsPt = null;
-            if(wkid == 4326){
-                wgsPt = new esri.geometry.Point(y,x);
-            }
-            else if(wkid = 102100){
-                wgsPt = new esri.geometry.Point(x,y, new esri.SpatialReference({ wkid: wkid }));
-            }
 
-            this.map.centerAt(wgsPt);
-            console.log("map centered");
+            var m_map = this.map;
+
+            require(["esri/geometry/Point","esri/SpatialReference"],function(Point,SpatialReference){
+                var wgsPt = null;
+                if(wkid == 4326){
+                    wgsPt = new Point(y,x);
+                }
+                else if(wkid = 102100){
+                    wgsPt = new Point(x,y, new esri.SpatialReference({ wkid: wkid }));
+                }
+
+                m_map.centerAt(wgsPt);
+                console.log("map centered");
+            });
         }
         else{
             console.log("Null value detected. Is setCenterPt() set?");

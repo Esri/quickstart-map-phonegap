@@ -9,6 +9,7 @@ This repo contains four sample applications.
 * index_basicwebmap.html - uses a simple web map.
 * index_basicgps.html - uses the GPS to acquire current location and center the map.
 * index_jquerymobilegps.html - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS API for JavaScript. 
+* index_jquerymobilegps_localarcgis.html - demonstrates using an optimized local version of the ArcGIS API for JavaScript.
 
 The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library.
 
@@ -52,7 +53,9 @@ Install the Cordova [command line interface (CLI)](http://cordova.apache.org/doc
 
 These applications will not work as stand-alone web applications because there are coded specifically for PhoneGap/Cordova. 
 
-Build and run application directly on a device. Use console.log statements for troubleshooting. With the latest versions of Chrome and Safari you can remotely debug the device as long as it's attached to your laptop via a USB cabable. This is super-convienent and very easy to set up.
+For the most definitive approach, build and run application directly on a device. Use console.log statements for troubleshooting. With the latest versions of Chrome and Safari you can remotely debug the device as long as it's attached to your laptop via a USB cabable. This is super-convienent and very easy to set up.
+
+For rapid tweaking/testing cycles you should also check out the [PhoneGap Desktop App](https://github.com/phonegap/phonegap-app-desktop). It's been in beta and is still rusty but worth a look.
 
 
 ## Minimum Requirements
