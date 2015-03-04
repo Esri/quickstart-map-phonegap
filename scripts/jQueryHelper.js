@@ -30,6 +30,13 @@ var jQueryHelper = function(/* Map */ map){
     this.DEBOUNCE_DELAY = 250;
 
     /**
+     * The delay that allows the application to "settle" before
+     * attempting to reinflate. You may need to tweak this!
+     * @type {number}
+     */
+    this.REINFLATION_DELAY = 1000;
+
+    /**
      * Constant variables
      * @type {Object}
      */
@@ -285,7 +292,7 @@ var jQueryHelper = function(/* Map */ map){
                         message: "jQueryHelper map loaded",
                         time: new Date()
                     })
-                }.bind(this),350) //resize and reposition need to settle before this fires!
+                }.bind(this),this.REINFLATION_DELAY) //resize and reposition need to settle before this fires!
             }.bind(this),this.DEBOUNCE_DELAY)()
         }
         else{

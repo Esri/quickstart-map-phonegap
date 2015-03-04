@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>Basic Map</title>
+    <title>Basic Web Map</title>
     <style  type="text/css">
         body, html {
             width: 100%;
@@ -30,12 +30,12 @@
     </div>
 </div>
 <!-- Load the library references for ArcGIS API for JavaScript -->
-<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
-<script type="text/javascript" src="http://js.arcgis.com/3.8compact"></script>
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+<script type="text/javascript" src="http://js.arcgis.com/3.13compact"></script>
 <script type="text/javascript" src="cordova.js"></script>
 
 <script>
-    
+
     var app = {
         // Application Constructor
         initialize: function() {
@@ -60,47 +60,47 @@
             console.log('Received Event: ' + id);
             mapInit();
         }
-    };      
-    
-    var mapInit = function(){ 
+    };
+
+    var mapInit = function(){
         require(["esri/map","esri/arcgis/utils","esri/dijit/Legend","esri/dijit/Scalebar","dijit/layout/BorderContainer",
-        "dijit/layout/ContentPane"],
-            function(Map,utils,Legend,Scalebar,BorderContainer,ContentPane) {
-                // Create map
+                    "dijit/layout/ContentPane"],
+                function(Map,utils,Legend,Scalebar,BorderContainer,ContentPane) {
+                    // Create map
 
-                var map = null, helper;
-                utils.arcgisUrl = utils.arcgisUrl.replace("file:", "http:");
-                utils.createMap("4778fee6371d4e83a22786029f30c7e1", "mapDiv")
-                    .then(function(response) {
-                        dojo.byId("title").innerHTML = response.itemInfo.item.title;
-                        dojo.byId("subtitle").innerHTML = response.itemInfo.item.snippet;
+                    var map = null, helper;
+                    utils.arcgisUrl = utils.arcgisUrl.replace("file:", "http:");
+                    utils.createMap("4778fee6371d4e83a22786029f30c7e1", "mapDiv")
+                            .then(function(response) {
+                                dojo.byId("title").innerHTML = response.itemInfo.item.title;
+                                dojo.byId("subtitle").innerHTML = response.itemInfo.item.snippet;
 
-                        map = response.map;                    
+                                map = response.map;
 
-                        //add the scalebar 
-                        var scalebar = new Scalebar({
-                            map: map,
-                            scalebarUnit: "english"
-                        });
-                    
-                        //add the legend. Note that we use the utility method getLegendLayers to get 
-                        //the layers to display in the legend from the createMap response.
-                        var legendLayers = arcgisUtils.getLegendLayers(response); 
-                        var legendDijit = new Legend({
-                            map: map,
-                            layerInfos: legendLayers
-                        },"legend");
-                        legendDijit.startup();
+                                //add the scalebar
+                                var scalebar = new Scalebar({
+                                    map: map,
+                                    scalebarUnit: "english"
+                                });
 
-                },function(error){
-                    console.log("Map creation failed: ", dojo.toJson(error));
-                });
-            }
+                                //add the legend. Note that we use the utility method getLegendLayers to get
+                                //the layers to display in the legend from the createMap response.
+                                var legendLayers = utils.getLegendLayers(response);
+                                var legendDijit = new Legend({
+                                    map: map,
+                                    layerInfos: legendLayers
+                                },"legend");
+                                legendDijit.startup();
+
+                            },function(error){
+                                console.log("Map creation failed: ", dojo.toJson(error));
+                            });
+                }
         );
     }
-    
+
     app.initialize();
-        
+
 </script>
 
 
