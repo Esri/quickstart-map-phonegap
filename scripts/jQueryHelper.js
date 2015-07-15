@@ -2,6 +2,7 @@
  * Helper library for building mobile ArcGIS mapping applications with jQuery mobile.
  * Specifically designed for use in multiple view applications.
  * Requires: jQuery Mobile 1.3+ and ArcGIS API for JavaScript v3.5+
+ * jQueryHelper.js is available from here: https://github.com/Esri/jquery-mobile-map-js
  * @author Andy Gup
  * @param map esri.Map
  */
@@ -370,10 +371,6 @@ var jQueryHelper = function(/* Map */ map){
 
         this.setOrientationListener();
         this.setPageChangeListeners(this.currentPageID);
-
-//        Set these listeners from within your application!
-//        this.setPanListener();
-//        this.setZoomListener();
 
         this.setWidth((this.map).width);
         this.setHeight((this.map).height);
