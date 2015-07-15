@@ -29,7 +29,7 @@ Install the Cordova [command line interface (CLI)](http://cordova.apache.org/doc
 
 		$ cordova platform add android
 
-6. Copy the sample apps directory from this repo into any newly created /www directories
+6. Copy the contents from this repo into any newly created /www directories
 7. Set which sample you want the application to launch in the [config.xml](http://cordova.apache.org/docs/en/4.0.0/config_ref_index.md.html#The%20config.xml%20File) `<content>` tag.
 
     	<content src="index_jquerymobilegps.html" />
