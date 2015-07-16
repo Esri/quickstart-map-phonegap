@@ -8,19 +8,29 @@
         res/xml/config.xml file.
     -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' http://js.arcgis.com http://services.arcgisonline.com http://server.arcgisonline.com;
-        style-src 'self' http://js.arcgis.com 'unsafe-inline';
-        script-src 'self' http://js.arcgis.com 'unsafe-eval'">
+        content="
+            default-src
+                'self'
+                http://js.arcgis.com
+                http://static.arcgis.com
+                http://services.arcgisonline.com
+                http://server.arcgisonline.com;
+            font-src
+                'self'
+                http://js.arcgis.com
+                data:;
+            style-src 'self' http://js.arcgis.com 'unsafe-inline';
+            script-src 'self' http://js.arcgis.com 'unsafe-eval'">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
     <title>Basic Map</title>
     <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 </head>
 <body>
     <div id="mapDiv"></div>
 
-    <script src="http://js.arcgis.com/3.13compact"></script>
+    <script src="http://js.arcgis.com/3.14"></script>
     <script src="scripts/basicmap.js"></script>
     <script src="cordova.js"></script>
 </body>
