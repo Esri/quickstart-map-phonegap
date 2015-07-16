@@ -2,7 +2,6 @@
  * Helper library for building mobile ArcGIS mapping applications with jQuery mobile.
  * Specifically designed for use in multiple view applications.
  * Requires: jQuery Mobile 1.3+ and ArcGIS API for JavaScript v3.5+
- * jQueryHelper.js is available from here: https://github.com/Esri/jquery-mobile-map-js
  * @author Andy Gup
  * @param map esri.Map
  */
@@ -146,7 +145,7 @@ var jQueryHelper = function(/* Map */ map){
 
         try{
             value = localStorage.getItem("_centerPtX") + "," + localStorage.getItem("_centerPtY") + "," +
-                localStorage.getItem("_spatialReference");
+            localStorage.getItem("_spatialReference");
         }
         catch(err)
         {
@@ -224,6 +223,7 @@ var jQueryHelper = function(/* Map */ map){
             console.log("home pageshow event");
             var currentOrientation = this.getOrientation();
             this._reinflatMap(currentOrientation);
+            this.recenterOnRotate(400);
         }.bind(this))
     }
 
@@ -341,7 +341,6 @@ var jQueryHelper = function(/* Map */ map){
 
     this._centerMap = function(/* number */ x, /* number */ y, /* int */ wkid){
         if(!isNaN(x) && !isNaN(y) && !isNaN(wkid)){
-
             var m_map = this.map;
 
             require(["esri/geometry/Point","esri/SpatialReference"],function(Point,SpatialReference){
@@ -371,6 +370,10 @@ var jQueryHelper = function(/* Map */ map){
 
         this.setOrientationListener();
         this.setPageChangeListeners(this.currentPageID);
+
+//        Set these listeners from within your application!
+//        this.setPanListener();
+//        this.setZoomListener();
 
         this.setWidth((this.map).width);
         this.setHeight((this.map).height);

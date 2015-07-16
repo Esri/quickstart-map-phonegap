@@ -12,22 +12,27 @@
             default-src
                 'self'
                 http://js.arcgis.com
+                http://static.arcgis.com
                 http://services.arcgisonline.com
                 http://server.arcgisonline.com
                 http://www.arcgis.com;
-        img-src
-            'self'
-            http://js.arcgis.com
-            http://server.arcgisonline.com
-            http://services.arcgisonline.com
-            data:;
-        style-src 'self' http://js.arcgis.com 'unsafe-inline';
-        script-src 'self' http://js.arcgis.com 'unsafe-eval'">
+            font-src
+                'self'
+                http://js.arcgis.com
+                data:;
+            img-src
+                'self'
+                http://js.arcgis.com
+                http://server.arcgisonline.com
+                http://services.arcgisonline.com
+                data:;
+            style-src 'self' http://js.arcgis.com 'unsafe-inline';
+            script-src 'self' http://js.arcgis.com 'unsafe-eval'">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
     <title>Basic Web Map</title>
     <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 </head>
 <body>
 
@@ -42,7 +47,7 @@
         </div>
     </div>
 
-    <script src="http://js.arcgis.com/3.13compact"></script>
+    <script src="http://js.arcgis.com/3.14"></script>
     <script src="scripts/basicwebmap.js"></script>
     <script src="cordova.js"></script>
 </body>
