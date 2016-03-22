@@ -29,6 +29,8 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
     
 	<script>
 	
+		// Indicates that Cordova is full loaded
+		// More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
     	document.addEventListener("deviceready", onDeviceReady, false);
 		
 		// Wait to load ArcGIS API for JavaScript until after deviceready event
@@ -45,7 +47,7 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
 		}
 	</script>
 	
-	<script src="http://js.arcgis.com/3.15"></script>
+	<script src="http://js.arcgis.com/3.16"></script>
 	<script src="cordova.js"></script>
     </body>
 
