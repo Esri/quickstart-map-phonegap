@@ -2,8 +2,8 @@
 
 A set of simple samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
 
-## Features
-This repo contains four sample applications. 
+## Samples
+This repo contains four sample applications.  
 
 * index_basicmap.html - a basic mapping application configuration.
 * index_basicwebmap.html - uses a simple web map.
@@ -12,6 +12,44 @@ This repo contains four sample applications.
 * index_jquerymobilegps_localarcgis.html - demonstrates a local version of the ArcGIS API for JavaScript that was created using [http://jso.arcgis.com/](http://jso.arcgis.com/). 
 
 The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library.
+
+## Life-cycle
+
+It's important that you follow basic guidelines when using the ArcGIS API for JavaScript within a PhoneGap/Cordova framework. Below is an example that oulines the basic life-cycle pattern. The order in which everything loads is important to ensure that the mapping library will work correctly. The samples included with this repo provide fully working examples of the life-cycle.
+
+
+```html
+
+	<head>
+         <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
+	</head>
+    <body>
+    
+    <div id="mapDiv"></div>
+    
+	<script>
+	
+    	document.addEventListener("deviceready", onDeviceReady, false);
+		
+		// Wait to load ArcGIS API for JavaScript until after deviceready event
+		function onDeviceRead() {
+		
+			// Now we load the map
+			require(["esri/map", "dojo/domReady!"], function(Map) {
+				map = new Map("map", {
+            		basemap: "topo",  
+            		center: [-122.45, 37.75], // longitude, latitude
+            		zoom: 13
+        		});
+    		});
+		}
+	</script>
+	
+	<script src="http://js.arcgis.com/3.15"></script>
+	<script src="cordova.js"></script>
+    </body>
+
+```
 
 ## Instructions
 
@@ -68,7 +106,7 @@ Find a bug or want to request a new feature?  Please let us know by submitting a
 Anyone and everyone is welcome to contribute. 
 
 ## Licensing
-Copyright 2015 Esri
+Copyright 2016 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
