@@ -34,7 +34,7 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
     	document.addEventListener("deviceready", onDeviceReady, false);
 		
 		// Wait to load ArcGIS API for JavaScript until after deviceready event
-		function onDeviceRead() {
+		function onDeviceReady() {
 		
 			// Now we load the map
 			require(["esri/map", "dojo/domReady!"], function(Map) {
