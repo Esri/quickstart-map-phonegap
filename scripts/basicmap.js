@@ -1,39 +1,23 @@
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        //app.receivedEvent('deviceready');
-        console.log('Cordova device ready event: ' + 'deviceready');
+// Indicates that Cordova is full loaded
+// More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
+document.addEventListener("deviceready", onDeviceReady, false);
 
-        require(["esri/map", "dojo/domReady!"],
-            function(Map) {
 
-                // Create map
-                var map = new Map("mapDiv",{
-                    basemap: "dark-gray",
-                    center: [-98.58, 39.82],
-                    zoom: 3
-                });
+function onDeviceReady(){
+    require(["esri/map", "dojo/domReady!"],
+        function(Map) {
 
-                map.on("load",function(evt) {
-                    console.log("Map loaded");
-                })
-            }
-        );
-    }
-};
+            // Create map
+            var map = new Map("mapDiv",{
+                basemap: "dark-gray",
+                center: [-98.58, 39.82],
+                zoom: 3
+            });
 
-app.initialize();
+            map.on("load",function(evt) {
+                console.log("Map loaded");
+            })
+        }
+    );
+}
+
