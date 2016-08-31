@@ -1,29 +1,8 @@
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        console.log('Received Event: ' + id);
-        mapInit();
-    }
-};
-var mapInit = function(){
+// Indicates that Cordova is full loaded
+// More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady(){
     console.log("Loading ArcGIS...");
     require(["esri/map","esri/symbols/PictureMarkerSymbol","esri/graphic",
             "esri/SpatialReference",
@@ -62,7 +41,16 @@ var mapInit = function(){
                     console.log("Unable to initialize jQueryHelper: " + err.message);
                 }
 
-                navigator.geolocation.getCurrentPosition(locationSuccess,locationError,{setHighAccuracy:true});
+                console.log("Starting geolocation...");
+                var location = navigator.geolocation.watchPosition(
+                    locationSuccess,
+                    locationError,
+                    {
+                        maxAge: 250000,
+                        timeout: 15000,
+                        enableHighAccuracy:true
+                    }
+                );
             }
 
             // Handle location success
@@ -80,10 +68,9 @@ var mapInit = function(){
             }
 
             function locationError(err){
-                console.log("locationError: " + err.toString());
+                console.log("locationError: " + JSON.stringify(err));
             }
 
         } //function
     ); //require
 };
-app.initialize();
