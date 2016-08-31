@@ -51,6 +51,7 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
 	<script src="https://js.arcgis.com/3.17"></script>
 	<script src="cordova.js"></script>
     </body>
+    </html>
 
 ```
 
