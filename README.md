@@ -19,6 +19,8 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
 
 ```html
 
+	<!DOCTYPE html>
+	<html>
 	<head>
          <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/css/esri.css">
 	</head>
