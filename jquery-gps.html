@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!--
-
-    NOTE 1: In order for geolocation to work you may need to install the plug-in:
-    https://www.npmjs.com/package/cordova-plugin-geolocation
-
-    NOTE 2: As a best practice for security this sample uses a content security policy (CSP) header: http://content-security-policy.com/
-    Best practices for mobile are to use SSL and CSP.
-    You can comment this out for testing, however be aware that PhoneGap also may enforce additional security via the
-    res/xml/config.xml file.
--->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
@@ -19,9 +9,9 @@
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
     <link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.min.css" />
     <link rel="stylesheet" href="css/jquery.css">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.17/esri/css/esri.css">
+    <link rel="stylesheet" href="css/esri3.17.css">
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="scripts/jquery-2.2.4.min.js"></script>
     <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
@@ -38,7 +28,11 @@
 
     </div>
 
-    <script src="http://js.arcgis.com/3.17"></script>
+    <!--
+        You can create and host a local, custom build of the ArcGIS JS API:
+        https://github.com/Esri/arcgis-js-api
+    -->
+    <script src="https://js.arcgis.com/3.17"></script>
     <!-- For more info on jQueryHelper: https://github.com/Esri/jquery-mobile-map-js -->
     <script src="scripts/jQueryHelper.js"></script>
     <script src="scripts/jquerygps.js"></script>
