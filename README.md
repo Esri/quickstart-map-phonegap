@@ -3,18 +3,20 @@
 A set of samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
 
 ## Samples
-This repo contains four sample applications.  
+This repo contains the following sample applications:
 
-* basic-map.html - a basic mapping application configuration.
-* basic-webmap.html - uses a simple web map.
-* basic-gps.html - uses the GPS to acquire current location and center the map.
-* jquery-gps.html - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS API for JavaScript. 
+* `basic-map.html` - a basic mapping app running ArcGIS JS API 3.x.
+* `basic-map4.x.html` - basic mapping app running ArcGIS JS API 4.x.
+* `basic-map-splashscreen.html` - a basic mapping app that demonstrates one approach to using a very lightweight loading screen.
+* `basic-webmap.html` - uses a simple web map.
+* `basic-gps.html` - uses the GPS to acquire current location and center the map.
+* `jquery-gps.html` - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS JS API. 
 
-The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library.
+The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library. As of ArcGIS JS API 4.x this helper library no longer needed.
 
 ## Life-cycle
 
-It's important that you follow basic guidelines when using the ArcGIS API for JavaScript within a PhoneGap/Cordova framework. The samples included with this repo provide fully working examples.
+It's important that you follow basic guidelines of waiting for the `onDeviceReady` event to fire before loading the ArcGIS JS API.
 
 
 ```html
@@ -22,7 +24,7 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
 	<!DOCTYPE html>
 	<html>
 	<head>
-         <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/css/esri.css">
+         <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 	</head>
     <body>
     
@@ -48,7 +50,7 @@ It's important that you follow basic guidelines when using the ArcGIS API for Ja
 		}
 	</script>
 	
-	<script src="https://js.arcgis.com/3.17"></script>
+	<script src="https://js.arcgis.com/3.20"></script>
 	<script src="cordova.js"></script>
     </body>
     </html>
@@ -100,7 +102,7 @@ Anyone and everyone is welcome to contribute.
 The `create_phonegap_quickstart.sh` shell script can be used to create a repository for tracking changes or to make pull requests. If you are unable to run the script you can manually reproduce the steps described in it. 
 
 ## Licensing
-Copyright 2016 Esri
+Copyright 2017 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
