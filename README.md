@@ -1,6 +1,6 @@
 # quickstart-map-phonegap
 
-A set of samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. These samples provide best practices for using PhoneGap and Cordova across different device operating systems and within the PhoneGap/Cordova application lifecycle.
+A set of samples that show how to get started with the ArcGIS API for JavaScript and PhoneGap/Cordova. 
 
 ## Samples
 This repo contains the following sample applications:
