@@ -53,7 +53,7 @@ function onDeviceReady(){
             }
 
             function locationError(err){
-                console.log("locationError: " + JSON.stringify(err));
+                console.log("locationError code: " + err.code);
             }
         }
     );

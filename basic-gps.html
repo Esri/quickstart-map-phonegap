@@ -3,13 +3,18 @@
 <!--
     NOTE 1: In order for geolocation to work you may need to install the plug-in:
     https://www.npmjs.com/package/cordova-plugin-geolocation
+
+    NOTE 2: As of Android 6, unless you specifically install the cordova-plugin-android-permissions
+    when the application is first launched it will fail with Error code 2.
+
+    User will have to switch on the applications location permission under Settings > Apps.
 -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no"/>
     <title>Basic GPS Map</title>
     <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="css/esri3.17.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
 </head>
 <body>
     <div id="mapDiv"></div>
@@ -18,7 +23,7 @@
         You can create and host a local, custom build of the ArcGIS JS API:
         https://github.com/Esri/arcgis-js-api
     -->
-    <script src="https://js.arcgis.com/3.17"></script>
+    <script src="https://js.arcgis.com/3.20"></script>
     <script src="cordova.js"></script>
     <script src="scripts/basicgps.js"></script>
 

@@ -6,9 +6,9 @@ function onDeviceReady() {
     //app.receivedEvent('deviceready');
     console.log('Cordova device ready event: ' + 'deviceready');
 
-    require(["esri/map","esri/arcgis/utils","esri/dijit/Legend","esri/dijit/Scalebar","dijit/layout/BorderContainer",
+    require(["esri/map","esri/arcgis/utils","dijit/layout/BorderContainer",
             "dijit/layout/ContentPane"],
-        function(Map,utils,Legend,Scalebar,BorderContainer,ContentPane) {
+        function(Map,utils,BorderContainer,ContentPane) {
             // Create map
 
             var map = null, helper;
@@ -19,21 +19,6 @@ function onDeviceReady() {
                     dojo.byId("subtitle").innerHTML = response.itemInfo.item.snippet;
 
                     map = response.map;
-
-                    //add the scalebar
-                    var scalebar = new Scalebar({
-                        map: map,
-                        scalebarUnit: "english"
-                    });
-
-                    //add the legend. Note that we use the utility method getLegendLayers to get
-                    //the layers to display in the legend from the createMap response.
-                    var legendLayers = utils.getLegendLayers(response);
-                    var legendDijit = new Legend({
-                        map: map,
-                        layerInfos: legendLayers
-                    },"legend");
-                    legendDijit.startup();
 
                 },function(error){
                     console.log("Map creation failed: ", dojo.toJson(error));
