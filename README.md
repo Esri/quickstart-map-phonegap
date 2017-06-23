@@ -21,17 +21,17 @@ It's important that you follow basic guidelines of waiting for the `onDeviceRead
 
 ```html
 
-	<!DOCTYPE html>
-	<html>
-	<head>
+    <!DOCTYPE html>
+    <html>
+    <head>
          <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
-	</head>
+    </head>
     <body>
     
     <div id="mapDiv"></div>
     
-	<script>
-	
+    <script>
+    
         // Indicates that Cordova is full loaded
         // More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -47,11 +47,11 @@ It's important that you follow basic guidelines of waiting for the `onDeviceRead
                     zoom: 13
                 });
             });
-}
-	</script>
-	
-	<script src="https://js.arcgis.com/3.20"></script>
-	<script src="cordova.js"></script>
+    }
+    </script>
+    
+    <script src="https://js.arcgis.com/3.20"></script>
+    <script src="cordova.js"></script>
     </body>
     </html>
 
