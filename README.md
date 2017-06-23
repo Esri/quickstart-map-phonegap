@@ -32,22 +32,22 @@ It's important that you follow basic guidelines of waiting for the `onDeviceRead
     
 	<script>
 	
-		// Indicates that Cordova is full loaded
-		// More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
-    	document.addEventListener("deviceready", onDeviceReady, false);
-		
-		// Wait to load ArcGIS API for JavaScript until after deviceready event
-		function onDeviceReady() {
-		
-			// Now we load the map
-			require(["esri/map", "dojo/domReady!"], function(Map) {
-				map = new Map("map", {
-            		basemap: "topo",  
-            		center: [-122.45, 37.75], // longitude, latitude
-            		zoom: 13
-        		});
-    		});
-		}
+        // Indicates that Cordova is full loaded
+        // More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
+        document.addEventListener("deviceready", onDeviceReady, false);
+        
+        // Wait to load ArcGIS API for JavaScript until after deviceready event
+        function onDeviceReady() {
+        
+            // Now we load the map
+            require(["esri/map", "dojo/domReady!"], function(Map) {
+                map = new Map("map", {
+                    basemap: "topo",  
+                    center: [-122.45, 37.75], // longitude, latitude
+                    zoom: 13
+                });
+            });
+}
 	</script>
 	
 	<script src="https://js.arcgis.com/3.20"></script>
