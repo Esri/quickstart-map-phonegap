@@ -52,8 +52,23 @@ function onDeviceReady(){
                 }
             }
 
-            function locationError(err){
-                console.log("locationError code: " + err.code);
+            function locationError(error){
+                console.log("locationError code: " + error.code);
+
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert("User denied request for geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                       alert("Location information is unavailable. Check application settings, make sure location permissions have been granted");
+                        break;
+                    case error.TIMEOUT:
+                        alert( "The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        alert("An unknown error occurred.");
+                        break;
+                }
             }
         }
     );
