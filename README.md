@@ -85,7 +85,12 @@ It's important that you follow basic guidelines of waiting for the `onDeviceRead
     	<content src="basic-gps.html" />
 
 8. To take advantage of GPS and Geolocation capabilities you may need to install the [Geolocation plugin](https://www.npmjs.com/package/cordova-plugin-geolocation). 
-9. Build the app and launch!
+9. Build the app and launch! Android Example:
+
+    * Connect your Android devices to your laptop by USB cable
+    * Run `adb devices` to spin up the daemon
+    * Run `cordova run android` to build the app and push it to the phone
+
 
 ## Testing
 
