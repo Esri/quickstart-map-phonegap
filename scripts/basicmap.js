@@ -2,22 +2,29 @@
 // More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
 document.addEventListener("deviceready", onDeviceReady, false);
 
+function onDeviceReady() {
 
-function onDeviceReady(){
-    require(["esri/map", "dojo/domReady!"],
-        function(Map) {
+    console.log("Device ready event fired.");
 
-            // Create map
-            var map = new Map("mapDiv",{
-                basemap: "dark-gray",
-                center: [-98.58, 39.82],
-                zoom: 3
-            });
+   require([
+     "esri/Map",
+     "esri/views/MapView",
+     "dojo/domReady!"
+   ], function(Map, MapView) {
 
-            map.on("load",function(evt) {
-                console.log("Map loaded");
-            })
-        }
-    );
+     console.log("Require() loaded.");
+
+     var map = new Map({
+       basemap: "streets"
+     });
+
+     var view = new MapView({
+       container: "viewDiv",
+       map: map,
+       zoom: 4,
+       center: [15, 65]
+     });
+
+   });
+
 }
-
