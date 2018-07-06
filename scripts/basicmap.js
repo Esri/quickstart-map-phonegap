@@ -4,27 +4,27 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
-        console.log("Device ready event fired.");
+    console.log("Device ready event fired.");
 
-       require([
-         "esri/Map",
-         "esri/views/MapView",
-         "dojo/domReady!"
-       ], function(Map, MapView) {
+   require([
+     "esri/Map",
+     "esri/views/MapView",
+     "dojo/domReady!"
+   ], function(Map, MapView) {
 
-         console.log("Require() loaded.");
+     console.log("Require() loaded.");
 
-         var map = new Map({
-           basemap: "streets"
-         });
+     var map = new Map({
+       basemap: "streets"
+     });
 
-         var view = new MapView({
-           container: "viewDiv",
-           map: map,
-           zoom: 4,
-           center: [15, 65]
-         });
+     var view = new MapView({
+       container: "viewDiv",
+       map: map,
+       zoom: 4,
+       center: [15, 65]
+     });
 
-       });
+   });
 
 }
