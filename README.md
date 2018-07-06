@@ -101,10 +101,10 @@ For the most definitive approach, build and run application directly on a device
 ## Minimum Requirements
 
 * Access to the [ArcGIS API for JavaScript v4.x](https://developers.arcgis.com/en/javascript).
+* [Cordova CLI latest](http://cordova.apache.org/docs/en/latest/guide/cli/index.html)
 * One actual working device for each mobile platform you want to deploy to. Simply testing on an emulator isn't good enough for production use. Test on as many devices as possible.
 * AndroidStudio and XCode (iOS)
 * Android SDK - if you are deploying to Android
-* Node.js - for the PhoneGap/Cordova CLI [command-line interface](https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli).
 
 ## Issues
 
