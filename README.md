@@ -5,14 +5,9 @@ A set of samples that show how to get started with the ArcGIS API for JavaScript
 ## Samples
 This repo contains the following sample applications:
 
-* `basic-map.html` - a basic mapping app running ArcGIS JS API 3.x.
-* `basic-map4.x.html` - basic mapping app running ArcGIS JS API 4.x.
-* `basic-map-splashscreen.html` - a basic mapping app that demonstrates one approach to using a very lightweight loading screen.
+* `basic-map.html` - a basic mapping app running ArcGIS JS API 4.x.
 * `basic-webmap.html` - uses a simple web map.
 * `basic-gps.html` - uses the GPS to acquire current location and center the map.
-* `jquery-gps.html` - demonstrates how to use jQuery mobile with PhoneGap and the ArcGIS JS API. 
-
-The jQuery sample also makes use of the [jquery-mobile-map-js](https://github.com/Esri/jquery-mobile-map-js) repository's jQueryHelper library. As of ArcGIS JS API 4.x this helper library no longer needed.
 
 ## Life-cycle
 
@@ -24,33 +19,55 @@ It's important that you follow basic guidelines of waiting for the `onDeviceRead
     <!DOCTYPE html>
     <html>
     <head>
-         <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css">
+       <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+           <style>
+           html,
+           body, #viewDiv {
+             margin: 0;
+             padding: 0;
+             height: 100%;
+             width: 100%;
+           }
+         </style>
     </head>
     <body>
-    
-    <div id="mapDiv"></div>
-    
+
+    <div id="viewDiv"></div>
+
     <script>
-    
+
         // Indicates that Cordova is full loaded
         // More info: https://cordova.apache.org/docs/en/latest/cordova/events/events.html
         document.addEventListener("deviceready", onDeviceReady, false);
-        
+
         // Wait to load ArcGIS API for JavaScript until after deviceready event
         function onDeviceReady() {
-        
+
             // Now we load the map
-            require(["esri/map", "dojo/domReady!"], function(Map) {
-                map = new Map("map", {
-                    basemap: "topo",  
-                    center: [-122.45, 37.75], // longitude, latitude
-                    zoom: 13
-                });
-            });
-    }
+           require([
+             "esri/Map",
+             "esri/views/MapView",
+             "dojo/domReady!"
+           ], function(Map, MapView) {
+
+             console.log("Require() loaded.");
+
+             var map = new Map({
+               basemap: "streets"
+             });
+
+             var view = new MapView({
+               container: "viewDiv",
+               map: map,
+               zoom: 4,
+               center: [15, 65]
+             });
+
+           });
+        }
     </script>
-    
-    <script src="https://js.arcgis.com/3.20"></script>
+
+    <script src="https://js.arcgis.com/4.8/"></script>
     <script src="cordova.js"></script>
     </body>
     </html>
@@ -78,22 +95,28 @@ For the most definitive approach, build and run application directly on a device
 
 ## Minimum Requirements
 
-* Access to the [ArcGIS API for JavaScript v3.x](https://developers.arcgis.com/javascript/3/jsapi/).
+* Access to the [ArcGIS API for JavaScript v4.x](https://developers.arcgis.com/en/javascript).
 * One actual working device for each mobile platform you want to deploy to. Simply testing on an emulator isn't good enough for production use. Test on as many devices as possible.
 * AndroidStudio and XCode (iOS)
 * Android SDK - if you are deploying to Android
-* Node.js - for the PhoneGap/Cordova CLI [command-line interface](https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli). 
-
-## Resources
-
-* [ArcGIS for JavaScript API Resources](https://developers.arcgis.com/javascript/3/jsapi/)
-* [jQueryHelper Library](https://github.com/Esri/jquery-mobile-map-js)
-* [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
-* [twitter@esri](http://twitter.com/esri)
+* Node.js - for the PhoneGap/Cordova CLI [command-line interface](https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli).
 
 ## Issues
 
 Find a bug or want to request a new feature?  Please let us know by submitting an issue.
+
+Not getting a location result in Android - try the following:
+
+* If you are using Android Studio look for errors in Android Monitor. You may have also gotten an application alert box when the `watchPosition()` request timed out.
+* Add these permissions to the `AndroidManifest.xml file`. You can find it under `/<your_project_directory>/platforms/android/`:
+
+	```
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	```
+
+* Go into the application settings on the device and enable `Location`.
+* Close your application using swipe and then restart it.
 
 ## Contributing
 
@@ -102,7 +125,7 @@ Anyone and everyone is welcome to contribute.
 The `create_phonegap_quickstart.sh` shell script can be used to create a repository for tracking changes or to make pull requests. If you are unable to run the script you can manually reproduce the steps described in it. 
 
 ## Licensing
-Copyright 2017 Esri
+Copyright 2018 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
